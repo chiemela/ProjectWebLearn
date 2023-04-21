@@ -1,0 +1,228 @@
+﻿@model FullStack.Models.Feedbacks
+
+@{
+    ViewData["Title"] = "Feedback Details";
+}
+
+<partial name="_TopNav" />
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <partial name="_brandlogo" />
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+                        <i class="nav-icon fa-solid fa-gauge-high"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="AttachmentFile" asp-action="Index">
+                        <i class="nav-icon fa-solid fa-file-pen"></i>
+                        <p>
+                            Assessment
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" asp-controller="Feedbacks" asp-action="Index">
+                        <i class="nav-icon fa-sharp fa-solid fa-comments fa-beat"></i>
+                        <p>
+                            Feedback
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Tasks" asp-action="Index">
+                        <i class="nav-icon fa-solid fa-list-check"></i>
+                        <p>
+                            Tasks
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Notifications" asp-action="Index">
+                        <i class="nav-icon fa-solid fa-bell"></i>
+                        <p>
+                            Notifications
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>
+                            Profile
+                        </p>
+                    </a>
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    // this section is accessible to admin only
+                    <li class="nav-header">ADMIN AREA</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="AppRoles" asp-action="Index">
+                            <i class="nav-icon fa-sharp fa-solid fa-user-shield"></i>
+                            <p>
+                                Role
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Enrollment" asp-action="Index">
+                            <i class="nav-icon fa-solid fa-scroll"></i>
+                            <p>
+                                Enrollment
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="User" asp-action="Index">
+                            <i class="nav-icon fa-solid fa-users"></i>
+                            <p>
+                                Users
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Modules" asp-action="Index">
+                            <i class="nav-icon fa-solid fa-book"></i>
+                            <p>
+                                Modules
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="UserModule" asp-action="Index">
+                            <i class="nav-icon fa-solid fa-address-card"></i>
+                            <p>
+                                User Modules
+                            </p>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Feedback</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Feedbacks" asp-action="Index">Feedback</a></li>
+                        <li class="breadcrumb-item active">Details</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3 class="card-title">Viewing Details</h3>
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.StudentEmailID)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.StudentEmailID)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.LecturerEmailID)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.LecturerEmailID)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Title)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Grade)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Grade)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.LecturerComment)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.LecturerComment)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.CreatedDateTime)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.CreatedDateTime)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Modules)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Modules.ModulesID)
+                                </dd>
+                            </dl>
+                            <a asp-action="Edit" asp-route-id="@Model?.FeedbacksID">Edit</a> |
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<partial name="_FooterCopyright" />
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

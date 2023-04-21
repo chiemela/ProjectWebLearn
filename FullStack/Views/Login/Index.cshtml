@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<main class="main-content  mt-0">
+    <div class="container-fluid py-4 mt-5">
+        <img src="~/ProjectWebLearn-logo.png"
+                class="rounded mx-auto d-block"
+                style="height:100px"
+                alt="ProjectWebLearn-logo" />
+        <h2 class="text-center text-dark py-5">Login to gain access!</h2>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header p-3 pt-2">
+                        <div class="fa-3x">
+                            <i class="fa-solid fa-right-to-bracket fa-bounce"></i>
+                        </div>
+                        <div class="text-end pt-1">
+                            <p class="text-sm mb-0 text-capitalize">Returning User?</p>
+                            <h4 class="mb-0">Student / Lecturer</h4>
+                        </div>
+                    </div>
+                    <hr class="dark horizontal my-0">
+                    <div class="card-footer p-3">
+                        <a class="btn btn-primary btn-gradient font-weight-bold" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+        <p class="mt-4 text-sm text-center">
+            Don't have an account?
+            <a class="text-primary text-gradient font-weight-bold" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </p>
+    </div>
+</main>

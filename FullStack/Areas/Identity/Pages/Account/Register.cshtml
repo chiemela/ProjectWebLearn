@@ -1,0 +1,96 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+@*<h1>@ViewData["Title"]</h1>*@
+
+<div class="container-fluid py-5 mt-5">
+    <div class="row">
+        <div class="col-lg-4 col-md-8 col-12 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">ProjectWebLearn - Login</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <h2>Create a new account.</h2>
+                        <hr />
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <label asp-for="Input.FirstName">FirstName</label>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.FirstName" class="form-control px-1" style="border:1px solid #959292; color:#777575" autocomplete="FirstName" aria-required="true" placeholder="First Name" />
+                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.LastName">LastName</label>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.LastName" class="form-control px-1" style="border:1px solid #959292; color:#777575" autocomplete="LastName" aria-required="true" placeholder="Last Name" />
+                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.Email">Email</label>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Email" class="form-control px-1" style="border:1px solid #959292; color:#777575" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.Password">Password</label>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Password" class="form-control px-1" style="border:1px solid #959292; color:#777575" autocomplete="new-password" aria-required="true" placeholder="password" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <p class="mb-2 text-sm mx-auto">
+                            Password must:
+                            <ul class="tab-menu ">
+                                <li class="text-sm mx-auto">Be at least 6 and at max 100 characters long.</li>
+                                <li class="text-sm mx-auto">Have at least one non alphanumeric character.</li>
+                                <li class="text-sm mx-auto">Have at least one digit ('0'-'9').</li>
+                                <li class="text-sm mx-auto">Have at least one uppercase ('A'-'Z').</li>
+                            </ul>
+                        </p>
+                        <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.ConfirmPassword" class="form-control px-1" style="border:1px solid #959292; color:#777575" autocomplete="new-password" aria-required="true" placeholder="password" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.Role">Select User Role</label>
+                        <div class="form-floating mb-3">
+                        <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select px-1" style="border:1px solid #959292; color:#777575" aria-required="true">
+                        <option disabled selected>Select Role</option>
+                        </select>
+                        <span asp-validation-for="Input.Role" class="text-danger"></span>
+                        </div>
+                        <div class="form-check form-check-info text-start ps-0">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                By Registering, you agree to the <a asp-controller="Terms" asp-action="Index" target="_blank" class="text-dark font-weight-bolder">Terms and Conditions</a>
+                            </label>
+                        </div>
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary mt-2">Register</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                    <p class="mb-2 text-sm mx-auto">
+                        Already have an account?
+                        <a class="text-primary text-gradient font-weight-bold" asp-controller="Login" asp-action="Index">Login</a>
+                    </p>
+                </div>
+            </div>
+            <div class="copyright text-center text-sm text-dark text-lg-start">
+                © <script>
+                      document.write(new Date().getFullYear())
+                </script>
+
+                <a class="navbar-brand m-0 font-weight-bold" asp-controller="Dashboard" asp-action="Index">
+                    ProjectWebLearn.
+                </a>
+                All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

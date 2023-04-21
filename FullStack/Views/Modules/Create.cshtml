@@ -1,0 +1,233 @@
+﻿@model FullStack.Models.Modules
+
+@{
+    ViewData["Title"] = "Create Module";
+}
+
+<partial name="_TopNav" />
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <partial name="_brandlogo" />
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+                        <i class="nav-icon fa-solid fa-gauge-high"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="AttachmentFile" asp-action="Index">
+                        <i class="nav-icon fa-solid fa-file-pen"></i>
+                        <p>
+                            Assessment
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Feedbacks" asp-action="Index">
+                        <i class="nav-icon fa-sharp fa-solid fa-comments"></i>
+                        <p>
+                            Feedback
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Tasks" asp-action="Index">
+                        <i class="nav-icon fa-solid fa-list-check"></i>
+                        <p>
+                            Tasks
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Notifications" asp-action="Index">
+                        <i class="nav-icon fa-solid fa-bell"></i>
+                        <p>
+                            Notifications
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>
+                            Profile
+                        </p>
+                    </a>
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    // this section is accessible to admin only
+                    <li class="nav-header">ADMIN AREA</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="AppRoles" asp-action="Index">
+                            <i class="nav-icon fa-sharp fa-solid fa-user-shield"></i>
+                            <p>
+                                Role
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Enrollment" asp-action="Index">
+                            <i class="nav-icon fa-solid fa-scroll"></i>
+                            <p>
+                                Enrollment
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="User" asp-action="Index">
+                            <i class="nav-icon fa-solid fa-users"></i>
+                            <p>
+                                Users
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Modules" asp-action="Index">
+                            <i class="nav-icon fa-solid fa-book fa-beat"></i>
+                            <p>
+                                Modules
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="UserModule" asp-action="Index">
+                            <i class="nav-icon fa-solid fa-address-card"></i>
+                            <p>
+                                User Modules
+                            </p>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Module</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Modules" asp-action="Index">Module</a></li>
+                        <li class="breadcrumb-item active">Create</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-12 mx-auto mt-5">
+                    <div class="card z-index-0 fadeIn3 fadeInBottom">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Create Module</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form id="registerForm" asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="ModulesID" class="control-label"></label>
+                                    <input asp-for="ModulesID" class="form-control px-1" style="border:1px solid #959292; color:#777575" />
+                                    <span asp-validation-for="ModulesID" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ModuleSpecification" class="control-label"></label>
+                                    <input asp-for="ModuleSpecification" class="form-control px-1" style="border:1px solid #959292; color:#777575" />
+                                    <span asp-validation-for="ModuleSpecification" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ModuleTitle" class="control-label"></label>
+                                    <input asp-for="ModuleTitle" class="form-control px-1" style="border:1px solid #959292; color:#777575" />
+                                    <span asp-validation-for="ModuleTitle" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ModuleLevel" class="control-label"></label>
+                                    <input asp-for="ModuleLevel" class="form-control px-1" style="border:1px solid #959292; color:#777575" />
+                                    <span asp-validation-for="ModuleLevel" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CreditRating" class="control-label"></label>
+                                    <input asp-for="CreditRating" class="form-control px-1" style="border:1px solid #959292; color:#777575" />
+                                    <span asp-validation-for="CreditRating" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="School" class="control-label"></label>
+                                    <input asp-for="School" class="form-control px-1" style="border:1px solid #959292; color:#777575" />
+                                    <span asp-validation-for="School" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="TotalStudyHours" class="control-label"></label>
+                                    <input asp-for="TotalStudyHours" class="form-control px-1" style="border:1px solid #959292; color:#777575" />
+                                    <span asp-validation-for="TotalStudyHours" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ModuleSummary" class="control-label"></label>
+                                    <textarea asp-for="ModuleSummary" class="form-control px-1" style="border:1px solid #959292; color:#777575" ></textarea>
+                                    <span asp-validation-for="ModuleSummary" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CreatedDateTime" class="control-label"></label>
+                                    <input asp-for="CreatedDateTime" class="form-control px-1" style="border:1px solid #959292; color:#777575" />
+                                    <span asp-validation-for="CreatedDateTime" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="w-100 btn btn-lg btn-primary mt-2" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<partial name="_FooterCopyright" />
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

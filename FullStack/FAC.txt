@@ -1,0 +1,58 @@
+{
+    // this is for hiding div tags
+    @if (User.IsInRole("Admin"))
+    {
+        <div>
+            <!-- content for the div tag -->
+        </div>
+    }
+}
+
+
+
+{
+    // this is for getting details of "IdentityUser" from Identity database
+    public class UserController : Controller
+    {
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public UserController(UserManager<IdentityUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            return View(user);
+        }
+    }
+    // this is the View for : UserController : Details
+    @model IdentityUser
+    <table>
+        <tbody>
+            <tr>
+                <td>Username</td>
+                <td>@Model.UserName</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td>@Model.PhoneNumber</td>
+            </tr>
+            <!-- add more fields as necessary -->
+        </tbody>
+    </table>
+}
+
+{
+    // how to implement select input box
+    <select asp-for="Status" name="Status" class="form-control px-1">
+        <option value="Complete">Complete</option>
+        <option value="Incomplete">Incomplete</option>
+    </select>
+}

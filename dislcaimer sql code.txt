@@ -1,0 +1,7 @@
+
+    [Discriminator]        NVARCHAR (MAX)     DEFAULT (N'') NOT NULL,
+
+Password Criterion
+Passwords must have at least one non alphanumeric character.
+Passwords must have at least one digit ('0'-'9').
+Passwords must have at least one uppercase ('A'-'Z').
